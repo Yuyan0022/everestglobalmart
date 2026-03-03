@@ -18,20 +18,63 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
+    position: relative;
 }
 
-/* Navigation */
-nav {
-    background: #062f4f;
-    padding: 12px;
-    text-align: center;
+/* Hamburger Button */
+.menu-icon {
+    position: absolute;
+    left: 20px;
+    top: 25px;
+    font-size: 28px;
+    cursor: pointer;
 }
 
-nav a {
-    color: white;
+/* Side Menu */
+.side-menu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #062f4f;
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding-top: 60px;
+    z-index: 1000;
+}
+
+.side-menu a {
+    padding: 12px 25px;
     text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+}
+
+.side-menu a:hover {
+    background-color: #0b3c5d;
+}
+
+/* Close Button */
+.side-menu .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+}
+
+/* Overlay */
+#overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 900;
 }
 
 /* Hero Section */
@@ -61,14 +104,9 @@ nav a {
 
 .hero h1 {
     font-size: 48px;
-    margin-bottom: 10px;
 }
 
-.hero p {
-    font-size: 20px;
-}
-
-/* Section */
+/* Sections */
 .section {
     padding: 60px 20px;
     text-align: center;
@@ -95,10 +133,6 @@ nav a {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.card h3 {
-    margin-top: 0;
-}
-
 /* Footer */
 footer {
     background: #0b3c5d;
@@ -112,16 +146,25 @@ footer {
 
 <body>
 
+<div id="overlay" onclick="closeMenu()"></div>
+
 <header>
+    <span class="menu-icon" onclick="openMenu()">☰</span>
     <h1>Everest Global Mart</h1>
     <p>Improving Online Platform Ratings & Trust Worldwide</p>
 </header>
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#contact">Contact</a>
-</nav>
+<!-- Side Navigation -->
+<div id="sideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#careers" onclick="closeMenu()">Careers</a>
+    <a href="#offers" onclick="closeMenu()">Our Offers</a>
+    <a href="#terms" onclick="closeMenu()">Terms of Use</a>
+    <a href="#policy" onclick="closeMenu()">Privacy Policy</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
 
 <section class="hero">
     <div class="hero-content">
@@ -131,18 +174,8 @@ footer {
 </section>
 
 <section id="about" class="section">
-    <h2>About Everest Global Mart</h2>
-    <p>
-        Everest Global Mart is dedicated to improving online platform ratings and marketplace performance.
-        We analyze customer reviews, delivery performance, service quality, and seller support systems to
-        help online platforms grow stronger and build trust.
-    </p>
-    <p>
-        Our mission is to guide e-commerce companies toward better transparency,
-        improved service standards, and higher customer satisfaction. Through
-        performance evaluation and rating optimization strategies, we support
-        platforms in achieving sustainable digital growth.
-    </p>
+    <h2>About Us</h2>
+    <p>Everest Global Mart helps online platforms improve ratings and build customer trust through detailed performance analysis.</p>
 </section>
 
 <section id="services" class="section" style="background:#ffffff;">
@@ -150,28 +183,59 @@ footer {
     <div class="card-container">
         <div class="card">
             <h3>Rating Analysis</h3>
-            <p>Deep analysis of customer feedback and rating trends across platforms.</p>
+            <p>Deep insights into customer feedback trends.</p>
         </div>
         <div class="card">
             <h3>Performance Improvement</h3>
-            <p>Strategic insights to improve delivery, customer service and return handling.</p>
+            <p>Improve delivery, service, and returns handling.</p>
         </div>
         <div class="card">
             <h3>Marketplace Comparison</h3>
-            <p>Compare top platforms and identify areas for competitive improvement.</p>
+            <p>Competitive growth strategies.</p>
         </div>
     </div>
 </section>
 
+<section id="careers" class="section">
+    <h2>Careers</h2>
+    <p>Join our mission to improve global e-commerce platforms.</p>
+</section>
+
+<section id="offers" class="section" style="background:#ffffff;">
+    <h2>Our Offers</h2>
+    <p>Customized rating and performance improvement solutions.</p>
+</section>
+
+<section id="terms" class="section">
+    <h2>Terms of Use</h2>
+    <p>By using this website, you agree to comply with our service guidelines and policies.</p>
+</section>
+
+<section id="policy" class="section" style="background:#ffffff;">
+    <h2>Privacy Policy</h2>
+    <p>We respect your privacy and do not share personal information with third parties.</p>
+</section>
+
 <section id="contact" class="section">
-    <h2>Contact Us</h2>
+    <h2>Contact</h2>
     <p>Email: support@everestglobalmart.com</p>
-    <p>We help platforms grow through better ratings and stronger customer trust.</p>
 </section>
 
 <footer>
-    <p>© 2026 Everest Global Mart | Independent Online Platform Rating Improvement Hub</p>
+    <p>© 2026 Everest Global Mart | All Rights Reserved</p>
 </footer>
+
+<script>
+function openMenu() {
+    document.getElementById("sideMenu").style.width = "250px";
+    document.getElementById("overlay").style.display = "block";
+}
+
+function closeMenu() {
+    document.getElementById("sideMenu").style.width = "0";
+    document.getElementById("overlay").style.display = "none";
+}
+</script>
 
 </body>
 </html>
